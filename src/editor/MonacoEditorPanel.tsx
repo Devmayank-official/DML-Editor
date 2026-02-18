@@ -110,16 +110,41 @@ export default function MonacoEditorPanel({ panelId, value, onChange }: MonacoEd
       });
     }
 
-    // Enable Emmet-like HTML autocomplete hints
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const htmlLang = (monaco.languages as any).html;
-    if (htmlLang?.htmlDefaults) {
-      htmlLang.htmlDefaults.setOptions({
-        format: { tabSize: 2, insertSpaces: true },
-        suggest: { html5: true },
-      });
-    }
-  }, [monaco]);
+      // Enable Emmet-like HTML autocomplete hints
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const htmlLang = (monaco.languages as any).html;
+      if (htmlLang?.htmlDefaults) {
+        htmlLang.htmlDefaults.setOptions({
+          format: { tabSize: 2, insertSpaces: true },
+          suggest: { html5: true },
+        });
+      }
+    }, [monaco]);
+
+  // ── Initialize emmet-monaco-es for HTML/CSS Emmet expansion ──────
+  useEffect(() => {
+    if (!monaco) return;
+
+    // Only register Emmet for HTML and CSS panels
+    if (panelId !== 'html' && panelId !== 'css') return;
+
+    let cancelled = false;
+
+    import('emmet-monaco-es').then((mod) => {
+      if (cancelled) return;
+      const emmetMonaco = mod.default ?? mod;
+      // Dispose previous Emmet registration before re-registering
+      emmetDisposableRef.current?.dispose();
+      const disposable = emmetMonaco.emmetHTML(monaco, ['html']);
+      emmetDisposableRef.current = disposable ?? null;
+    }).catch(() => {
+      // emmet-monaco-es failed to load — non-critical
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [monaco, panelId]);
 
   // ── Handler: editor mounted ────────────────────────────────────
   const handleMount: OnMount = useCallback(
