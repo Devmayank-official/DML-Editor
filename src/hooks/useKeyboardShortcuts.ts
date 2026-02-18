@@ -64,14 +64,15 @@ export function useKeyboardShortcuts() {
       }
 
       // Escape — close overlays
-      if (e.key === 'Escape') {
-        const store = useEditorStore.getState();
-        if (store.commandPaletteOpen) { store.setCommandPaletteOpen(false); return; }
-        if (store.zenMode) { store.setZenMode(false); return; }
-        if (store.historyOpen) { store.setHistoryOpen(false); return; }
-        if (store.settingsOpen) { store.setSettingsOpen(false); return; }
-        if (store.projectsOpen) { store.setProjectsOpen(false); return; }
-      }
+        if (e.key === 'Escape') {
+          const store = useEditorStore.getState();
+          if (store.commandPaletteOpen) { store.setCommandPaletteOpen(false); return; }
+          if (store.zenMode) { store.setZenMode(false); return; }
+          if (store.historyOpen) { store.setHistoryOpen(false); return; }
+          if (store.settingsOpen) { store.setSettingsOpen(false); return; }
+          if (store.projectsOpen) { store.setProjectsOpen(false); return; }
+          if (store.templatesOpen) { store.setTemplatesOpen(false); return; }
+        }
 
       // Ctrl+1/2/3 — Switch editor panel
       if (ctrl && !shift) {
