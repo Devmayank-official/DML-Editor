@@ -27,6 +27,7 @@ export default function MonacoEditorPanel({ panelId, value, onChange }: MonacoEd
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const settings = useEditorStore((s) => s.settings);
   const valueRef = useRef(value);
+  const emmetDisposableRef = useRef<{ dispose: () => void } | null>(null);
 
   // Keep valueRef in sync to avoid stale closure in event handlers
   valueRef.current = value;
