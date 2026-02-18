@@ -33,8 +33,16 @@ export default function CommandPalette() {
 
   // ── Build command list ────────────────────────────────────────
   const commands: Command[] = [
-    {
-      id: 'new-project',
+      {
+        id: 'templates',
+        label: 'Open Templates',
+        description: 'Browse starter templates',
+        icon: <LayoutTemplate className="w-4 h-4" />,
+        keywords: 'template starter landing portfolio dashboard',
+        action: () => { store.setTemplatesOpen(true); setOpen(false); },
+      },
+      {
+        id: 'new-project',
       label: 'New Project',
       description: 'Create a blank project',
       icon: <Plus className="w-4 h-4" />,
