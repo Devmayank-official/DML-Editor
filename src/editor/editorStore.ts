@@ -319,9 +319,31 @@ export const useEditorStore = create<EditorState>()(
       }
     },
 
-    loadAllProjects: async () => {
-      const projects = await getAllProjects();
-      set((s) => { s.projects = projects; });
-    },
-  }))
+      loadAllProjects: async () => {
+        const projects = await getAllProjects();
+        set((s) => { s.projects = projects; });
+      },
+
+      formatCurrentFile: async () => {
+        const { activePanel, files } = get();
+        const { formatWithPrettier } = await import('@/utils/prettier');
+        const content =
+          activePanel === 'html' ? files.html :
+          activePanel === 'css'  ? files.css :
+          files.js;
+        try {
+          const formatted = await formatWithPrettier(content, activePanel);
+          if (formatted !== content) {
+            set((s) => {
+              if (activePanel === 'html') s.files.html = formatted;
+              else if (activePanel === 'css') s.files.css = formatted;
+              else s.files.js = formatted;
+              s.isDirty = true;
+            });
+          }
+        } catch {
+          // Prettier parse error — silently ignore
+        }
+      },
+    }))
 );
