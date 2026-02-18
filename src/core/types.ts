@@ -18,6 +18,7 @@ export interface EditorFiles {
   html: string;
   css: string;
   js: string;
+  ts: string;
 }
 
 export interface Project {
