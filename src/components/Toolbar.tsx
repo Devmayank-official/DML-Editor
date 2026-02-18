@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import {
   Play, Save, Settings, History, FolderOpen, Share2,
   Download, Upload, Layout, Plus, ChevronDown, Zap,
-  Code, Eye, Columns, Rows, Moon, Terminal, FileCode
+  Code, Eye, Columns, Rows, Terminal, FileCode, LayoutTemplate
 } from 'lucide-react';
 
 // ── Layout picker dropdown ────────────────────────────────────────
