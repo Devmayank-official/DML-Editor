@@ -109,7 +109,7 @@ export const useEditorStore = create<EditorState>()(
     currentProject: null,
     projects: [],
     isDirty: false,
-    files: { html: DEFAULT_HTML, css: DEFAULT_CSS, js: DEFAULT_JS },
+    files: { html: DEFAULT_HTML, css: DEFAULT_CSS, js: DEFAULT_JS, ts: DEFAULT_TS },
     activePanel: 'html',
     layout: 'side-by-side',
     consoleOpen: false,
