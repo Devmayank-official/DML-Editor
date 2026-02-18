@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import {
   Search, Code, Eye, Layout, Save, Zap, History, Share2, Download,
-  FileCode, Moon, Settings, Trash, Plus, RotateCcw
+  FileCode, Moon, Settings, Trash, Plus, RotateCcw, LayoutTemplate
 } from 'lucide-react';
 
 interface Command {
