@@ -91,37 +91,32 @@ export default function MonacoEditorPanel({ panelId, value, onChange }: MonacoEd
 
     monaco.editor.setTheme('dml-dark');
 
-    // Configure JS/TS compiler options
-    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
-      target: monaco.languages.typescript.ScriptTarget.ES2020,
-      allowNonTsExtensions: true,
-      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-      module: monaco.languages.typescript.ModuleKind.CommonJS,
-      noEmit: true,
-      lib: ['ES2020', 'DOM', 'DOM.Iterable'],
-    });
-
-    monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-      target: monaco.languages.typescript.ScriptTarget.ES2020,
-      allowNonTsExtensions: true,
-      moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-      module: monaco.languages.typescript.ModuleKind.CommonJS,
-      noEmit: true,
-      strict: true,
-      lib: ['ES2020', 'DOM', 'DOM.Iterable'],
-    });
-
-    // Reduce diagnostics noise for the browser environment
-    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-      noSemanticValidation: false,
-      noSyntaxValidation: false,
-    });
+    // Configure JS/TS compiler options via the monaco editor languages API
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const tsLang = (monaco.languages as any).typescript;
+    if (tsLang) {
+      tsLang.javascriptDefaults?.setCompilerOptions({
+        target: tsLang.ScriptTarget?.ES2020,
+        allowNonTsExtensions: true,
+        noEmit: true,
+      });
+      tsLang.typescriptDefaults?.setCompilerOptions({
+        target: tsLang.ScriptTarget?.ES2020,
+        allowNonTsExtensions: true,
+        noEmit: true,
+        strict: true,
+      });
+    }
 
     // Enable Emmet-like HTML autocomplete hints
-    monaco.languages.html.htmlDefaults.setOptions({
-      format: { tabSize: 2, insertSpaces: true },
-      suggest: { html5: true },
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const htmlLang = (monaco.languages as any).html;
+    if (htmlLang?.htmlDefaults) {
+      htmlLang.htmlDefaults.setOptions({
+        format: { tabSize: 2, insertSpaces: true },
+        suggest: { html5: true },
+      });
+    }
   }, [monaco]);
 
   // ── Handler: editor mounted ────────────────────────────────────
