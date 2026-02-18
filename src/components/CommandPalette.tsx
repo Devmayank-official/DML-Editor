@@ -50,8 +50,22 @@ export default function CommandPalette() {
       keywords: 'create blank',
       action: () => { store.createNewProject(); setOpen(false); },
     },
-    {
-      id: 'save',
+      {
+        id: 'format',
+        label: 'Format Document',
+        description: 'Run Prettier on current file',
+        icon: <Code className="w-4 h-4" />,
+        shortcut: '⌘⇧F',
+        keywords: 'format prettier beautify code',
+        action: async () => {
+          const s = useEditorStore.getState();
+          await s.formatCurrentFile();
+          toast.success('Formatted');
+          setOpen(false);
+        },
+      },
+      {
+        id: 'save',
       label: 'Save Project',
       description: 'Save current files to IndexedDB',
       icon: <Save className="w-4 h-4" />,
