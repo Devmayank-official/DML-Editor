@@ -129,7 +129,7 @@ export default function IDERoot() {
       <SettingsModal />
       <HistoryModal />
       <ProjectsModal />
-      {showTemplates && <TemplatesModal onClose={() => setShowTemplates(false)} />}
+      {templatesOpen && <TemplatesModal onClose={() => setTemplatesOpen(false)} />}
 
       {/* Mobile FAB */}
       <MobileFAB />
