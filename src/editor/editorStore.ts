@@ -67,6 +67,7 @@ interface EditorState {
   setSettingsOpen: (open: boolean) => void;
   setHistoryOpen: (open: boolean) => void;
   setProjectsOpen: (open: boolean) => void;
+  setTemplatesOpen: (open: boolean) => void;
   setZenMode: (zen: boolean) => void;
   toggleTailwind: () => void;
   toggleTypeScript: () => void;
