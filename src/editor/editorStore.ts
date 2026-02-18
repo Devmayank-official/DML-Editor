@@ -329,16 +329,18 @@ export const useEditorStore = create<EditorState>()(
         const { activePanel, files } = get();
         const { formatWithPrettier } = await import('@/utils/prettier');
         const content =
-          activePanel === 'html' ? files.html :
-          activePanel === 'css'  ? files.css :
+          activePanel === 'html'       ? files.html :
+          activePanel === 'css'        ? files.css  :
+          activePanel === 'typescript' ? files.ts   :
           files.js;
         try {
           const formatted = await formatWithPrettier(content, activePanel);
           if (formatted !== content) {
             set((s) => {
-              if (activePanel === 'html') s.files.html = formatted;
-              else if (activePanel === 'css') s.files.css = formatted;
-              else s.files.js = formatted;
+              if (activePanel === 'html')            s.files.html = formatted;
+              else if (activePanel === 'css')        s.files.css  = formatted;
+              else if (activePanel === 'typescript') s.files.ts   = formatted;
+              else                                   s.files.js   = formatted;
               s.isDirty = true;
             });
           }
