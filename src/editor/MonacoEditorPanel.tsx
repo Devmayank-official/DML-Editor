@@ -5,6 +5,7 @@ import Editor, { useMonaco, type OnMount } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import type { PanelLanguage } from '@/core/types';
 import { useEditorStore } from '@/editor/editorStore';
+import { formatWithPrettier } from '@/utils/prettier';
 
 // ─── Monaco language map ──────────────────────────────────────────
 const LANG_MAP: Record<PanelLanguage, string> = {
