@@ -87,6 +87,7 @@ interface EditorState {
   renameProject: (name: string) => void;
   deleteCurrentProject: () => Promise<void>;
   loadAllProjects: () => Promise<void>;
+  formatCurrentFile: () => Promise<void>;
 }
 
 // ─── Helper: build a new blank project ───────────────────────────
