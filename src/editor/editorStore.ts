@@ -142,12 +142,13 @@ export const useEditorStore = create<EditorState>()(
       get().scheduleAutoSave();
     },
 
-    setConsoleOpen: (open) => set((s) => { s.consoleOpen = open; }),
-    setCommandPaletteOpen: (open) => set((s) => { s.commandPaletteOpen = open; }),
-    setSettingsOpen: (open) => set((s) => { s.settingsOpen = open; }),
-    setHistoryOpen: (open) => set((s) => { s.historyOpen = open; }),
-    setProjectsOpen: (open) => set((s) => { s.projectsOpen = open; }),
-    setZenMode: (zen) => set((s) => { s.zenMode = zen; }),
+      setConsoleOpen: (open) => set((s) => { s.consoleOpen = open; }),
+      setCommandPaletteOpen: (open) => set((s) => { s.commandPaletteOpen = open; }),
+      setSettingsOpen: (open) => set((s) => { s.settingsOpen = open; }),
+      setHistoryOpen: (open) => set((s) => { s.historyOpen = open; }),
+      setProjectsOpen: (open) => set((s) => { s.projectsOpen = open; }),
+      setTemplatesOpen: (open) => set((s) => { s.templatesOpen = open; }),
+      setZenMode: (zen) => set((s) => { s.zenMode = zen; }),
 
     toggleTailwind: () => {
       set((s) => { s.useTailwind = !s.useTailwind; });
