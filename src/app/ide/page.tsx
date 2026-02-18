@@ -69,13 +69,14 @@ function StatusBar() {
 // ── Root IDE component ────────────────────────────────────────────
 export default function IDERoot() {
   const [ready, setReady] = useState(false);
-  const [showTemplates, setShowTemplates] = useState(false);
   const initStore = useEditorStore((s) => s.initStore);
   const updateFile = useEditorStore((s) => s.updateFile);
   const setUseTailwind = useEditorStore((s) => s.toggleTailwind);
   const useTailwind = useEditorStore((s) => s.useTailwind);
   const triggerRun = useEditorStore((s) => s.triggerRun);
   const zenMode = useEditorStore((s) => s.zenMode);
+  const templatesOpen = useEditorStore((s) => s.templatesOpen);
+  const setTemplatesOpen = useEditorStore((s) => s.setTemplatesOpen);
 
   // ── Register keyboard shortcuts globally ─────────────────────
   useKeyboardShortcuts();
