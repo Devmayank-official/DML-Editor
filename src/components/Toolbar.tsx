@@ -247,6 +247,15 @@ export default function Toolbar() {
           <Plus className="w-3.5 h-3.5" />
           <span className="hidden lg:inline">New</span>
         </button>
+
+        <button
+          onClick={() => store.setTemplatesOpen(true)}
+          className="flex items-center gap-1.5 px-2 py-1.5 rounded text-xs text-[#8b8fa8] hover:bg-[#1a1d24] hover:text-[#e2e4ed] transition-colors"
+          title="Templates"
+        >
+          <LayoutTemplate className="w-3.5 h-3.5" />
+          <span className="hidden lg:inline">Templates</span>
+        </button>
       </div>
 
       {/* Spacer */}
