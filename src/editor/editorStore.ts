@@ -133,15 +133,16 @@ export const useEditorStore = create<EditorState>()(
     setActivePanel: (panel) => set((s) => { s.activePanel = panel; }),
     setLayout: (layout) => set((s) => { s.layout = layout; }),
 
-    updateFile: (lang, content) => {
-      set((s) => {
-        if (lang === 'html') s.files.html = content;
-        else if (lang === 'css') s.files.css = content;
-        else s.files.js = content;
-        s.isDirty = true;
-      });
-      get().scheduleAutoSave();
-    },
+      updateFile: (lang, content) => {
+        set((s) => {
+          if (lang === 'html') s.files.html = content;
+          else if (lang === 'css') s.files.css = content;
+          else if (lang === 'typescript') s.files.ts = content;
+          else s.files.js = content;
+          s.isDirty = true;
+        });
+        get().scheduleAutoSave();
+      },
 
       setConsoleOpen: (open) => set((s) => { s.consoleOpen = open; }),
       setCommandPaletteOpen: (open) => set((s) => { s.commandPaletteOpen = open; }),
