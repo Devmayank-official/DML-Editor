@@ -43,85 +43,214 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ─── DML Editor Dark Theme ─────────────────────────────────────── */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.5rem;
+
+  /* IDE surface colors */
+  --dml-bg-base:        #0d0e11;
+  --dml-bg-surface:     #13151a;
+  --dml-bg-elevated:    #1a1d24;
+  --dml-bg-overlay:     #20242e;
+  --dml-bg-hover:       #252a36;
+
+  /* Borders */
+  --dml-border:         #2a2d3a;
+  --dml-border-strong:  #3a3f52;
+
+  /* Text */
+  --dml-text-primary:   #e2e4ed;
+  --dml-text-secondary: #8b8fa8;
+  --dml-text-muted:     #555874;
+  --dml-text-inverse:   #0d0e11;
+
+  /* Brand accent — indigo/violet */
+  --dml-accent:         #6366f1;
+  --dml-accent-hover:   #818cf8;
+  --dml-accent-dim:     rgba(99,102,241,0.15);
+  --dml-accent-glow:    rgba(99,102,241,0.35);
+
+  /* Status */
+  --dml-success:        #10b981;
+  --dml-warning:        #f59e0b;
+  --dml-error:          #ef4444;
+  --dml-info:           #3b82f6;
+
+  /* Panel labels */
+  --dml-html:           #e06c75;
+  --dml-css:            #61afef;
+  --dml-js:             #e5c07b;
+  --dml-ts:             #56b6c2;
+
+  /* shadcn/radix compatibility layer */
+  --background: #0d0e11;
+  --foreground: #e2e4ed;
+  --card: #13151a;
+  --card-foreground: #e2e4ed;
+  --popover: #1a1d24;
+  --popover-foreground: #e2e4ed;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1d24;
+  --secondary-foreground: #e2e4ed;
+  --muted: #1a1d24;
+  --muted-foreground: #8b8fa8;
+  --accent: #252a36;
+  --accent-foreground: #e2e4ed;
+  --destructive: #ef4444;
+  --border: #2a2d3a;
+  --input: #1a1d24;
+  --ring: #6366f1;
+  --chart-1: #6366f1;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #3b82f6;
+  --sidebar: #13151a;
+  --sidebar-foreground: #e2e4ed;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1d24;
+  --sidebar-accent-foreground: #e2e4ed;
+  --sidebar-border: #2a2d3a;
+  --sidebar-ring: #6366f1;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
+/* ─── Base reset & scrollbar ────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    background: var(--dml-bg-base);
+    color: var(--dml-text-primary);
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--dml-border-strong);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--dml-text-muted); }
+  ::-webkit-scrollbar-corner { background: transparent; }
+
+  /* Firefox */
+  * { scrollbar-width: thin; scrollbar-color: var(--dml-border-strong) transparent; }
+}
+
+/* ─── Monaco Editor overrides ───────────────────────────────────── */
+.monaco-editor,
+.monaco-editor-background,
+.monaco-editor .margin {
+  background-color: var(--dml-bg-surface) !important;
+}
+
+.monaco-editor .minimap { opacity: 0.7; }
+
+/* ─── Resizable panel handles ───────────────────────────────────── */
+[data-panel-resize-handle-id] {
+  background: var(--dml-border);
+  transition: background 0.15s;
+  position: relative;
+}
+
+[data-panel-resize-handle-id]:hover,
+[data-panel-resize-handle-id][data-resize-handle-active] {
+  background: var(--dml-accent);
+}
+
+/* ─── Utility animations ────────────────────────────────────────── */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--dml-accent-glow); }
+  50%       { box-shadow: 0 0 12px 4px var(--dml-accent-glow); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-slide-up   { animation: slideInUp 0.2s ease forwards; }
+.animate-slide-down { animation: slideInDown 0.2s ease forwards; }
+.animate-fade-in    { animation: fadeIn 0.15s ease forwards; }
+.animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+.animate-spin-slow  { animation: spin 1s linear infinite; }
+
+/* ─── Editor tab styles ─────────────────────────────────────────── */
+.editor-tab {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.editor-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.editor-tab.active::after {
+  background: var(--dml-accent);
+}
+
+/* ─── Glass morphism panel ──────────────────────────────────────── */
+.glass-panel {
+  background: rgba(19, 21, 26, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--dml-border);
+}
+
+/* ─── Command palette overlay ───────────────────────────────────── */
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+
+/* ─── Mobile touch friendly ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .monaco-editor .suggest-widget {
+    max-width: calc(100vw - 32px) !important;
   }
 }
 
-/* Hide Next.js error overlay portal */
-nextjs-portal {
-  display: none !important;
-}
+/* ─── Hide Next.js dev overlay ──────────────────────────────────── */
+nextjs-portal { display: none !important; }
