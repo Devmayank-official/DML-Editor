@@ -41,36 +41,63 @@ function EditorTabs() {
   const activePanel = useEditorStore((s) => s.activePanel);
   const setActivePanel = useEditorStore((s) => s.setActivePanel);
   const useTailwind = useEditorStore((s) => s.useTailwind);
+  const useTypeScript = useEditorStore((s) => s.useTypeScript);
+  const toggleTypeScript = useEditorStore((s) => s.toggleTypeScript);
 
   const panels: { id: PanelLanguage; label: string }[] = [
-    { id: 'html', label: 'HTML' },
-    { id: 'css', label: useTailwind ? 'CSS + Tailwind' : 'CSS' },
+    { id: 'html',       label: 'HTML' },
+    { id: 'css',        label: useTailwind ? 'CSS + Tailwind' : 'CSS' },
     { id: 'javascript', label: 'JS' },
+    { id: 'typescript', label: 'TS' },
   ];
 
   return (
     <div className="flex items-center gap-0 bg-[#13151a] border-b border-[#2a2d3a] overflow-x-auto">
-      {panels.map((p) => (
-        <button
-          key={p.id}
-          onClick={() => setActivePanel(p.id)}
-          className={cn(
-            'editor-tab flex items-center gap-1.5 px-4 py-2 text-xs font-semibold transition-colors whitespace-nowrap',
-            activePanel === p.id
-              ? 'text-[#e2e4ed] bg-[#1a1d24] active'
-              : 'text-[#555874] hover:text-[#8b8fa8] hover:bg-[#1a1d24]/50'
-          )}
-          style={{
-            borderBottom: activePanel === p.id ? `2px solid ${PANEL_COLORS[p.id]}` : '2px solid transparent',
-          }}
-        >
-          <span
-            className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: PANEL_COLORS[p.id] }}
-          />
-          {p.label}
-        </button>
-      ))}
+      {panels.map((p) => {
+        // Hide TS tab when TS mode is off; hide JS tab when TS mode is on
+        if (p.id === 'typescript' && !useTypeScript) return null;
+        if (p.id === 'javascript' && useTypeScript) return null;
+        return (
+          <button
+            key={p.id}
+            onClick={() => setActivePanel(p.id)}
+            className={cn(
+              'editor-tab flex items-center gap-1.5 px-4 py-2 text-xs font-semibold transition-colors whitespace-nowrap',
+              activePanel === p.id
+                ? 'text-[#e2e4ed] bg-[#1a1d24] active'
+                : 'text-[#555874] hover:text-[#8b8fa8] hover:bg-[#1a1d24]/50'
+            )}
+            style={{
+              borderBottom: activePanel === p.id ? `2px solid ${PANEL_COLORS[p.id]}` : '2px solid transparent',
+            }}
+          >
+            <span
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: PANEL_COLORS[p.id] }}
+            />
+            {p.label}
+          </button>
+        );
+      })}
+
+      {/* TypeScript toggle button */}
+      <button
+        onClick={() => {
+          toggleTypeScript();
+          // Switch to the correct scripting panel after toggling
+          const nextPanel = useTypeScript ? 'javascript' : 'typescript';
+          useEditorStore.getState().setActivePanel(nextPanel);
+        }}
+        className={cn(
+          'ml-auto flex items-center gap-1 px-3 py-2 text-[10px] font-bold transition-colors uppercase tracking-wide shrink-0',
+          useTypeScript
+            ? 'text-[#56b6c2] hover:text-[#56b6c2]/80'
+            : 'text-[#555874] hover:text-[#8b8fa8]'
+        )}
+        title={useTypeScript ? 'Switch to JavaScript' : 'Switch to TypeScript'}
+      >
+        {useTypeScript ? 'TS ✓' : 'TS'}
+      </button>
     </div>
   );
 }
