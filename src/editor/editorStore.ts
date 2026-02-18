@@ -13,7 +13,7 @@ import type {
   PanelLanguage,
   VersionEntry,
 } from '@/core/types';
-import { DEFAULT_SETTINGS, DEFAULT_HTML, DEFAULT_CSS, DEFAULT_JS } from '@/core/types';
+import { DEFAULT_SETTINGS, DEFAULT_HTML, DEFAULT_CSS, DEFAULT_JS, DEFAULT_TS } from '@/core/types';
 import { saveProject, getAllProjects, loadSettings, saveSettings } from '@/storage/db';
 import { createVersion, getProjectVersions } from '@/history/versionManager';
 
