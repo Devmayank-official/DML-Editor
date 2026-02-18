@@ -128,23 +128,43 @@ export default function MonacoEditorPanel({ panelId, value, onChange }: MonacoEd
       // Apply theme immediately
       monacoInstance.editor.setTheme('dml-dark');
 
-      // Keyboard shortcut: Ctrl+S → save
+      // ── Helper: format with Prettier then propagate to store ──────
+      const runPrettierFormat = async () => {
+        const model = editorInstance.getModel();
+        if (!model) return;
+        try {
+          const current = model.getValue();
+          const formatted = await formatWithPrettier(current, panelId);
+          if (formatted !== current) {
+            // Preserve cursor
+            const position = editorInstance.getPosition();
+            model.setValue(formatted);
+            if (position) editorInstance.setPosition(position);
+          }
+        } catch {
+          // Prettier parse error — silently ignore (leave code as-is)
+        }
+      };
+
+      // Keyboard shortcut: Ctrl+S → Prettier format (if enabled) then save
       editorInstance.addCommand(
         monacoInstance.KeyMod.CtrlCmd | monacoInstance.KeyCode.KeyS,
-        () => {
+        async () => {
           const store = useEditorStore.getState();
-          store.saveCurrentProject().then(() => {
-            const { toast } = require('sonner');
-            toast.success('Project saved');
-          });
+          if (store.settings.formatOnSave) {
+            await runPrettierFormat();
+          }
+          await store.saveCurrentProject();
+          const { toast } = await import('sonner');
+          toast.success('Saved', { duration: 1500 });
         }
       );
 
-      // Keyboard shortcut: Ctrl+Shift+F → format
+      // Keyboard shortcut: Ctrl+Shift+F → format with Prettier
       editorInstance.addCommand(
         monacoInstance.KeyMod.CtrlCmd | monacoInstance.KeyMod.Shift | monacoInstance.KeyCode.KeyF,
-        () => {
-          editorInstance.getAction('editor.action.formatDocument')?.run();
+        async () => {
+          await runPrettierFormat();
         }
       );
 
@@ -167,7 +187,8 @@ export default function MonacoEditorPanel({ panelId, value, onChange }: MonacoEd
       // Focus editor
       editorInstance.focus();
     },
-    []
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [panelId]
   );
 
   // ── Sync external value changes without losing cursor position ──
