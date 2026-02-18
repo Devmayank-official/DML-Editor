@@ -95,7 +95,7 @@ function buildBlankProject(name = 'Untitled Project'): Project {
   return {
     id: nanoid(),
     name,
-    files: { html: DEFAULT_HTML, css: DEFAULT_CSS, js: DEFAULT_JS },
+    files: { html: DEFAULT_HTML, css: DEFAULT_CSS, js: DEFAULT_JS, ts: DEFAULT_TS },
     createdAt: Date.now(),
     updatedAt: Date.now(),
     useTailwind: false,
