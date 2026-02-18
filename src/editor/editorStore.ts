@@ -213,18 +213,19 @@ export const useEditorStore = create<EditorState>()(
       });
     },
 
-    loadProject: async (project) => {
-      set((s) => {
-        s.currentProject = project;
-        s.files = { ...project.files };
-        s.isDirty = false;
-        s.useTailwind = project.useTailwind;
-        s.useTypeScript = project.useTypeScript;
-        s.versions = [];
-        s.versionsLoaded = false;
-        s.consoleEntries = [];
-      });
-    },
+      loadProject: async (project) => {
+        set((s) => {
+          s.currentProject = project;
+          // Handle legacy projects without ts field
+          s.files = { ...project.files, ts: project.files.ts ?? DEFAULT_TS };
+          s.isDirty = false;
+          s.useTailwind = project.useTailwind;
+          s.useTypeScript = project.useTypeScript;
+          s.versions = [];
+          s.versionsLoaded = false;
+          s.consoleEntries = [];
+        });
+      },
 
     saveCurrentProject: async () => {
       const { currentProject, files, useTailwind, useTypeScript } = get();
