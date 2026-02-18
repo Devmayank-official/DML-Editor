@@ -36,6 +36,7 @@ interface EditorState {
   settingsOpen: boolean;
   historyOpen: boolean;
   projectsOpen: boolean;
+  templatesOpen: boolean;
   zenMode: boolean;
 
   // Feature toggles
