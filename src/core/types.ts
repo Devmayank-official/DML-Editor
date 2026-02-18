@@ -157,3 +157,26 @@ function handleClick() {
 }
 
 console.log('DML Editor ready!');`;
+
+export const DEFAULT_TS = `// TypeScript
+interface ColorItem {
+  name: string;
+  gradient: string;
+}
+
+const colors: ColorItem[] = [
+  { name: 'Indigo-Violet', gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)' },
+  { name: 'Emerald-Cyan',  gradient: 'linear-gradient(135deg, #10b981, #06b6d4)' },
+  { name: 'Amber-Red',     gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)' },
+  { name: 'Blue-Indigo',   gradient: 'linear-gradient(135deg, #3b82f6, #6366f1)' },
+];
+
+function handleClick(): void {
+  const h1 = document.querySelector<HTMLHeadingElement>('h1');
+  if (!h1) return;
+  const item = colors[Math.floor(Math.random() * colors.length)];
+  h1.style.backgroundImage = item.gradient;
+  console.log('Color changed to:', item.name);
+}
+
+console.log('DML Editor (TypeScript mode) ready!');`;
